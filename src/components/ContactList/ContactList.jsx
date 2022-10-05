@@ -4,7 +4,7 @@ import { ContactListStyle, ContactButton, ContactItemStyle } from './ContactList
 export default function ContactList({ items, onDeleteContact }) {
     console.log(items)
     const elements = items.map(({ name, number, id }) => {
-        return <ContactItemStyle key={id}>{name}:{number}
+        return <ContactItemStyle key={id}>{name}: {number}
                     <ContactButton
                             type="button"
                             onClick={() => onDeleteContact(id)}>
