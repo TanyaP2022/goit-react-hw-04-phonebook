@@ -28,20 +28,23 @@ class App extends Component {
   }
 }
 
-  addContact = ({name, number} ) => {
-    const contact = {
-      name,
-      number,
-      id: nanoid(),
-    };
+  addContact = ({ name, number }) => {
+    const { contacts } = this.state;
+    if (
+      contacts.find(
+        (contact) => contact.name.toLowerCase() === name.toLowerCase()|| contact.number.toLowerCase() === number.toLowerCase()
+      )
+    ) {
+      return alert(`${name}/${number} is already in contacts!`);
+    }
+
     this.setState(({ contacts }) => {
-      if (
-        contacts.find(
-          contact => contact.name.toLowerCase() === name.toLowerCase()|| contact.number.toLowerCase() === number.toLowerCase()
-        )
-      ) {
-        return alert(`${name}/${number} is already in contacts!`);
+      const contact = {
+        name,
+        number,
+        id: nanoid(),
       }
+
       return {
         contacts: [contact, ...contacts],
       };
